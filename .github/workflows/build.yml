@@ -24,7 +24,13 @@ jobs:
 
     - name: Build EXE
       run: |
-        pyinstaller --onefile ts-main.py
+        pyinstaller ^
+          --onefile ^
+          --hidden-import=scipy.special._cdflib ^
+          --hidden-import=scipy.special._ufuncs_cxx ^
+          --collect-all numba ^
+          --collect-all scipy ^
+          main.py
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4 
