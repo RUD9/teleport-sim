@@ -26,12 +26,24 @@ jobs:
           pip install numpy scipy matplotlib numba pyinstaller
 
       - name: Build EXE with PyInstaller
-        run: |
-          pyinstaller --onefile --windowed --name "ts-main_exe" --add-data "*.py;." --hidden-import=numba --hidden-import=scipy.integrate --hidden-import=scipy.interpolate --hidden-import=matplotlib.backends.backend_tkagg --hidden-import=tkinter --hidden-import=tkinter.ttk --hidden-import=tkinter.messagebox --hidden-import=tkinter.scrolledtext --collect-all matplotlib --collect-all numba ts-main.py
+        run: >
+          pyinstaller --onefile --windowed
+          --name "ts-main"
+          --hidden-import=numba
+          --hidden-import=scipy.integrate
+          --hidden-import=scipy.interpolate
+          --hidden-import=matplotlib.backends.backend_tkagg
+          --hidden-import=tkinter
+          --hidden-import=tkinter.ttk
+          --hidden-import=tkinter.messagebox
+          --hidden-import=tkinter.scrolledtext
+          --collect-all matplotlib
+          --collect-all numba
+          ts-main.py
 
       - name: Upload EXE artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ts-maim_exe
+          name: ts-main
           path: dist/ts-main.exe
           retention-days: 30
