@@ -1,34 +1,37 @@
-name: Build Windows EXE
+name: Build EXE
 
 on:
   push:
-    branches: [ main ] 
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v4 
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5 
-      with:
-        python-version: '3.13'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        if (Test-Path requirements.txt) { pip install -r requirements.txt }
-        pip install pyinstaller
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy scipy matplotlib numba pyinstaller
 
-    - name: Build EXE
-      run: |
-        pyinstaller --onefile --hidden-import=scipy.special._cdflib --hidden-import=scipy._lib.array_api_compat.torch --hidden-import=scipy.special._ufuncs_cxx --collect-all numba --collect-all scipy ts-main.py
+      - name: Build EXE with PyInstaller
+        run: |
+          pyinstaller --onefile --windowed --name "ts-main_exe" --add-data "*.py;." --hidden-import=numba --hidden-import=scipy.integrate --hidden-import=scipy.interpolate --hidden-import=matplotlib.backends.backend_tkagg --hidden-import=tkinter --hidden-import=tkinter.ttk --hidden-import=tkinter.messagebox --hidden-import=tkinter.scrolledtext --collect-all matplotlib --collect-all numba ts-main.py
 
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v4 
-      with:
-        name: windows-exe
-        path: dist/*.exe
-        retention-days: 7 
+      - name: Upload EXE artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ts-maim_exe
+          path: dist/ts-main.exe
+          retention-days: 30
