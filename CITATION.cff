@@ -1,0 +1,41 @@
+```yaml
+cff-version: 1.2.0
+title: "Alena Tensor Warp Bubble Simulation"
+message: "If you use this repository, please cite it using the metadata below."
+type: software
+authors:
+  - family-names: "Горбенко"
+    given-names: "Рудольф Павлович"
+repository-code: "https://github.com/RUD9/teleport-sim"
+url: "https://github.com/RUD9/teleport-sim"
+license: "GPL-3.0"
+version: "15.0"
+date-released: "2026-03-22"
+abstract: >
+  Numerical simulation of a spherically symmetric flat-spacetime bubble
+  in curved geometry using the Alena Tensor framework, including
+  Schwarzschild validation, ADM mass, asymptotic flatness, EFE residuals,
+  stability analysis, and null geodesic tracing.
+keywords:
+  - general relativity
+  - numerical simulation
+  - spacetime
+  - Einstein equations
+  - Schwarzschild metric
+  - warp bubble
+references:
+  - type: article
+    authors:
+      - family-names: "Ogonowski"
+        given-names: "Piotr"
+      - family-names: "Skindzier"
+        given-names: "Piotr"
+    title: "Alena Tensor in unification applications"
+    journal: "Physica Scripta"
+    year: 2025
+    volume: 100
+    pages: 015018
+    doi: "10.1088/1402-4896/ad98ca"
+```
+
+---

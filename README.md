@@ -90,13 +90,12 @@ ds^2 = -A(r)^2 c^2 dt^2 + B(r)^2 (dr^2 + r^2 d\Omega^2)
 
 ```text
 .
-├── main.py
+├── ts-main.py
 ├── README.md
 ├── requirements.txt
 ├── LICENSE
 ├── .gitignore
 ├── CITATION.cff
-├── PROJECT_INFO.md
 ├── docs/
 │   ├── school_project.pdf
 │   └── simulation_report.pdf
